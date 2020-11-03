@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Url Identifier</title>
+    <title>Spam Classifier</title>
 </head>
 <body>
-    <a href="{% url 'spam' %}">Spam Classifier</a>
-    <form action="classify" method='post'>
+    <form action="detectmessage" method='post'>
     {% csrf_token %}
-    <input type="text" name="url" placeholder="Enter URL">
-    <button type="submit">classify</button>
+    <input type="text" name="spam" placeholder="Type your message....">
+    <button type="submit">Detect!</button>
     </form>
     {% if value %}
     <h1>{{ value }}</h1>
