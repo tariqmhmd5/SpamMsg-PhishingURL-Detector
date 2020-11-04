@@ -23,13 +23,14 @@ def classify(request):
         
         context = {'value':value}
     else:
-        return(HttpResponse("404 Not Found"))
+        return(render(request,'home.html'))
 
     return(render(request,'home.html',context))
 
 def spam(request):
     if request.method=='POST':
         message = request.POST['spam']
+        
         message = message.lower()
 
         tf = pickle.load(open('static/tfidf.pickle', 'rb'))
@@ -42,10 +43,10 @@ def spam(request):
         if predicted_value==0:
             value="Not Spam!!"
         else:
-            value="Spam Message!!"
+            value="Message is Spam!!"
         
         context = {'value':value}
     else:
         return(render(request,'spam.html'))
 
-    return(render(request,'home.html',context))
+    return(render(request,'spam.html',context))
